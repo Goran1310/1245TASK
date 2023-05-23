@@ -9,3 +9,6 @@ npm install sequelize dotenv mysql mysql2 swagger-autogen swagger-ui-express
 
 
 npm audit fix --force
+
+http://localhost:3000/doc
+http://localhost:3000/doc/#/

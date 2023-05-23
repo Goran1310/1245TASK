@@ -12,6 +12,8 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger-output.json');
 const bodyParser = require('body-parser')
 
+// Create express app
+var app = express();
 
 // Import required routes 
 var indexRouter = require('./routes/index');
@@ -43,9 +45,6 @@ var db = require("./models");
 
 // Sync database with models
 db.sequelize.sync({ force: false, alter: true })
-
-// Create express app
-var app = express();
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
