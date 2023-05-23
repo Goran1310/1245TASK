@@ -8,11 +8,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json');
+const bodyParser = require('body-parser')
+
+
 // Import required routes 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,6 +31,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Set up routes = BINDING ROUTES to endpoints
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+
+// Add the Swagger UI middleware to the app
+app.use(bodyParser.json())
+app.use('/doc', swaggerUi.serve);
+app.get('/doc', swaggerUi.setup(swaggerDocument));
 
 // Import database models
 var db = require("./models");
